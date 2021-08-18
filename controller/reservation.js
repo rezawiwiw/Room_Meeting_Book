@@ -51,7 +51,13 @@ module.exports = {
                     data :{  }
                 })    
             }
+            console.log(find)
             
+        if (find === undefined){
+            await room.update({status, user_id})
+            await user.update({RoomId : id})
+        }
+
             if(user_id === find.user_id){
                 return res.status(400).send({
                     status : false,
@@ -59,10 +65,7 @@ module.exports = {
                     data :{  }
                 })
             }
-
-            await room.update({status, user_id})
-            await user.update({RoomId : id})
-
+        
             return res.status(200).send({
                 status : true,
                 message : 'Sukses Booking Room',
